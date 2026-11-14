@@ -1,3 +1,5 @@
 #include "esp_err.h"
 
-esp_err_t my_guitar_fx_display_init(void);
+#include "my_guitar_fx_core.h"
+
+esp_err_t my_guitar_fx_display_init(const fx_t fx_array[], size_t fx_array_length);

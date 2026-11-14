@@ -15,7 +15,7 @@ const char *TAG = "my_guitar_fx_display";
 
 lv_display_t *display = NULL;
 
-esp_err_t my_guitar_fx_display_init(void){
+esp_err_t my_guitar_fx_display_init(const fx_t fx_array[], size_t fx_array_length){
 
     esp_err_t err = my_ili9341_lvgl_init(&display);
     if(err != ESP_OK){
@@ -29,7 +29,7 @@ esp_err_t my_guitar_fx_display_init(void){
     }
 
     _lock_acquire(&lvgl_api_lock);
-    display_manager(display);
+    display_manager(display, fx_array, fx_array_length);
     _lock_release(&lvgl_api_lock);
     return ESP_OK;
 }
