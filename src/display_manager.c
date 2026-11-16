@@ -25,11 +25,14 @@
 #define BUTTON_WIDTH 80
 #define BUTTON_HEIGHT 50
 
+#define APP_NAME "MY GUITAR FX"
 
 lv_obj_t *tuner_container;
 size_t g_fx_array_length;
 lv_obj_t *g_fx_ui_container[CONFIG_MAX_FX_COUNT];
 lv_obj_t *fx_btn[CONFIG_MAX_FX_COUNT];
+
+lv_obj_t *title_lbl;
 
 static void fx_button_event_cb(lv_event_t *e){
     lv_event_code_t code = lv_event_get_code(e);
@@ -39,6 +42,7 @@ static void fx_button_event_cb(lv_event_t *e){
         for(int i = 0; i < g_fx_array_length; i++){
             if(strcmp(lv_obj_get_name(g_fx_ui_container[i]) ,lv_obj_get_name(clicked_btn)) == 0){
                 lv_obj_remove_flag(g_fx_ui_container[i], LV_OBJ_FLAG_HIDDEN);
+                lv_label_set_text(title_lbl, lv_obj_get_name(clicked_btn));
                 continue;
             }
         }
@@ -52,6 +56,7 @@ static void back_button_event_cb(lv_event_t *e){
     lv_obj_t *parent = lv_obj_get_parent(btn);
     if(code == LV_EVENT_CLICKED){
         lv_obj_add_flag(parent, LV_OBJ_FLAG_HIDDEN);
+        lv_label_set_text(title_lbl, APP_NAME);
     }
 }
 
@@ -67,8 +72,8 @@ void display_manager(lv_display_t *disp, const fx_t fx_array[], size_t fx_array_
     lv_obj_set_style_pad_all(navbar_container, 0, 0);
     lv_obj_set_size(navbar_container, scr_width, 20);
 
-    lv_obj_t *title_lbl = lv_label_create(navbar_container);
-    lv_label_set_text(title_lbl, "MY GUITAR FX");
+    title_lbl = lv_label_create(navbar_container);
+    lv_label_set_text(title_lbl, APP_NAME);
 
 
     lv_obj_t *main_container = lv_obj_create(scr);
