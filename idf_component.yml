@@ -6,4 +6,4 @@ dependencies:
     path: ../../../..
 
   my_guitar_fx_effects:
-    git: https://github.com/amjs456/my_guitar_fx_effects.git
+    path: ..
