@@ -77,6 +77,7 @@ void display_manager(lv_display_t *disp, const fx_t fx_array[], size_t fx_array_
     
 
     lv_obj_t *btn_container = lv_obj_create(main_container);
+    lv_obj_set_flex_flow(btn_container, LV_FLEX_FLOW_ROW);
     lv_obj_set_style_pad_all(btn_container, 0, 0);
     int32_t btn_container_width = scr_width * 0.9f;
     lv_obj_set_size(btn_container, btn_container_width, 100);
@@ -84,6 +85,9 @@ void display_manager(lv_display_t *disp, const fx_t fx_array[], size_t fx_array_
 
     for(int i = 0; i < fx_array_length; i++){
         g_fx_ui_container[i] = fx_array[i].fx_ui_func_ptr(main_container, fx_array[i].args);
+        lv_obj_add_flag(g_fx_ui_container[i], LV_OBJ_FLAG_HIDDEN);
+        lv_obj_set_style_pad_all(g_fx_ui_container[i], 0, 0);
+        lv_obj_set_size(g_fx_ui_container[i], 320, 200);
         fx_btn[i] = lv_obj_create(btn_container);
         fx_btn_lbl[i] = lv_label_create(fx_btn[i]);
         lv_label_set_text(fx_btn_lbl[i], lv_obj_get_name(g_fx_ui_container[i]));
