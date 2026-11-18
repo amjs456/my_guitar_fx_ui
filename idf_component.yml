@@ -1,9 +1,3 @@
 dependencies:
   my_ili9341_lvgl:
     git: https://github.com/amjs456/my_ili9341_lvgl.git
-
-  my_guitar_fx_core:
-    path: ../../../..
-
-  my_guitar_fx_effects:
-    path: ..
